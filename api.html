@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DigiX — مستندات API</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="./css/api.css">
+
+
+    <style>
+        .api-doc {
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .api-doc p,
+        .api-doc ul,
+        .api-doc code,
+        .api-doc h2,
+        .api-doc h3 {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="liquid">
+        <div class="brand">
+            <div class="logo">
+                <img src="img/logo.png" alt="DigiX Logo">
+            </div>
+            <div class="title">مجموعه DigiX | دیجیکس</div>
+        </div>
+        <nav>
+            <a class="tab" href="https://digix-helper.ir">معرفی</a>
+            <a class="tab active" href="https://digix-helper.ir/api">مستندات API</a>
+            <a class="tab" href="https://digix-helper.ir/team">تیم DigiX</a>
+        </nav>
+    </header>
+
+    <div class="docs-container">
+        <aside class="liquid sidebar">
+            <div class="sidebar-header">
+                <h3>وب‌سرویس‌های DigiX</h3>
+            </div>
+            <div class="sidebar-nav">
+
+                <div class="nav-section">
+                    <div class="nav-section-title">اتصال به وب سرویس ها</div>
+                    <a href="#send-requests" class="nav-item" data-api="email-sender">ارسال درخواست</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">پر طرفدار</div>
+                    <a href="#email-sender" class="nav-item" data-api="email-sender">Email Sender</a>
+                    <a href="#calculate-age" class="nav-item" data-api="calculate-age">Calculate Age</a>
+                    <a href="#country-info" class="nav-item" data-api="country-info">Country Info</a>
+                    <a href="#ping-api" class="nav-item" data-api="ping-api">Ping API</a>
+                    <a href="#time-api" class="nav-item" data-api="time-api">Time API</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">هوش مصنوعی</div>
+                    <a href="#gemini-ai" class="nav-item" data-api="gemini-ai">Gemini AI</a>
+                    <a href="#religious-ai" class="nav-item" data-api="religious-ai">Religious AI</a>
+                    <a href="#synapse-ai" class="nav-item" data-api="synapse-ai">Synapse AI</a>
+                    <a href="#ai-audio-api" class="nav-item" data-api="ai-audio-api">AI Audio API</a>
+                    <a href="#ai-master" class="nav-item" data-api="ai-master">AI Master</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">تبدیل و محاسبه</div>
+                    <a href="#convert-num-to-text" class="nav-item" data-api="convert-num-to-text">Convert Num to
+                        Text</a>
+                    <a href="#bmi-calculation" class="nav-item" data-api="bmi-calculation">BMI Calculation</a>
+                    <a href="#fa-to-fn" class="nav-item" data-api="fa-to-fn">FA to FN</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">سرگرمی و محتوا</div>
+                    <a href="#joke-api" class="nav-item" data-api="joke-api">Joke API</a>
+                    <a href="#dream-api" class="nav-item" data-api="dream-api">Dream API</a>
+                    <a href="#hafez-fortune" class="nav-item" data-api="hafez-fortune">Hafez Fortune</a>
+                    <a href="#estekhare" class="nav-item" data-api="estekhare">Estekhare</a>
+                    <a href="#tts-api" class="nav-item" data-api="tts-api">TTS API</a>
+                    <a href="#aparat-search" class="nav-item" data-api="aparat-search">Aparat Search</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">ابزار وب و دامنه</div>
+                    <a href="#domain-scope" class="nav-item" data-api="domain-scope">Domain Scope</a>
+                    <a href="#shorten-url" class="nav-item" data-api="shorten-url">Shorten URL</a>
+                    <a href="#qr-code-api" class="nav-item" data-api="qr-code-api">QR Code API</a>
+                    <a href="#image-api" class="nav-item" data-api="image-api">Image API</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">مالی و اطلاعات</div>
+                    <a href="#coin-rates" class="nav-item" data-api="coin-rates">Coin Rates</a>
+                    <a href="#currency-price" class="nav-item" data-api="currency-price">Currency Price</a>
+                    <a href="#my-ip-info" class="nav-item" data-api="my-ip-info">My IP Info</a>
+                    <a href="#national-id" class="nav-item" data-api="national-id">National ID</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">رمزنگاری</div>
+                    <a href="#text-encryption" class="nav-item" data-api="text-encryption">Text Encryption</a>
+                    <a href="#text-decryption" class="nav-item" data-api="text-decryption">Text Decryption</a>
+                    <a href="#text-to-morse" class="nav-item" data-api="text-to-morse">Text to Morse</a>
+                    <a href="#morse-to-text" class="nav-item" data-api="morse-to-text">Morse to Text</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">جستجو</div>
+                    <a href="#search-api" class="nav-item" data-api="search-api">Search API</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">پیام‌رسانی و ایمیل</div>
+                    <a href="#email-sender" class="nav-item" data-api="email-sender">Email Sender</a>
+                </div>
+                <div class="nav-section">
+                    <p>
+
+                    </p>
+                </div>
+
+
+            </div>
+        </aside>
+
+        <main class="liquid main-content">
+            <section class="docs-section liquid api-doc" id="send-requests">
+                <h2>ایجاد درخواست</h2>
+                <p>
+                    تمامی درخواست‌های مربوط به وب سرویس سایت <strong>digix-helper</strong> باید از طریق HTTPS و به شکل
+                    زیر
+                    ارسال شوند:
+                </p>
+                <code class="code-link">https://api.digix-helper.ir/METHOD_NAME?token=your_token</code>
+                <p>مثال درخواست:</p>
+                <code class="code-link">GET https://api.digix-helper.ir/users?token=123456ABCDEF</code>
+
+                <h3>متدهای پشتیبانی شده</h3>
+                <p>تمامی وب سرویسها متدهای <strong>GET</strong> و <strong>POST</strong> را پشتیبانی می‌کنند.</p>
+
+                <h3>روش‌های ارسال پارامتر</h3>
+                <ul>
+                    <li>URL query string</li>
+                    <li>application/x-www-form-urlencoded</li>
+                    <li>application/json</li>
+                    <li>multipart/form-data (برای آپلود فایل)</li>
+                </ul>
+
+                <h3>فرمت پاسخ</h3>
+                <p>
+                    پاسخ همیشه یک شیء JSON است که شامل فیلد <code>ok</code> از نوع boolean است.
+                    ممکن است فیلد <code>description</code> برای توضیح نتیجه درخواست وجود داشته باشد.
+                    اگر <code>ok</code> برابر <code>true</code> باشد، درخواست موفق بوده و نتیجه در فیلد
+                    <code>result</code> قرار دارد.
+                    در صورت عدم موفقیت، <code>ok</code> برابر <code>false</code> خواهد بود و خطا در
+                    <code>description</code> توضیح داده می‌شود.
+                    همه پاسخ‌ها ممکن است شامل <code>error_code</code> (integer) و در برخی موارد فیلد اختیاری
+                    <code>parameters</code> از نوع <code>ResponseParameters</code> باشند.
+                </p>
+
+                <h3>نکات مهم</h3>
+                <ul>
+                    <li>تمامی درخواست‌ها باید شامل پارامتر <code>token</code> باشند.</li>
+                    <li>هیچ حساسیتی نسبت به بزرگ یا کوچک بودن حروف وجود ندارد.</li>
+                    <li>تمامی درخواست‌ها باید با فرمت <strong>UTF-8</strong> ارسال شوند.</li>
+                    <li>برای ارسال پارامترها از یکی از Content-Typeهای <code>application/json</code>،
+                        <code>application/x-www-form-urlencoded</code> یا <code>multipart/form-data</code> استفاده کنید.
+                    </li>
+                    <li>متد درخواست خود را از طریق پارامتر <code>method</code> مشخص کنید.</li>
+                </ul>
+            </section>
+
+
+            <section id="email-sender" class="docs-section">
+                <h2>Email Sender <span class="method-badge method-post">POST</span></h2>
+                <p class="description">این API برای ارسال ایمیل استفاده می‌شود.</p>
+
+                <div class="endpoint">
+                    POST /api/email/send
+                </div>
+
+                <h3>پارامترهای بدنه</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">to</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>آدرس ایمیل گیرنده</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">subject</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>موضوع ایمیل</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">body</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>محتوای ایمیل</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "message": "ایمیل با موفقیت ارسال شد",
+  "message_id": "12345abc"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="calculate-age" class="docs-section">
+                <h2>Calculate Age <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API برای محاسبه دقیق سن و دریافت اطلاعات سن استفاده می‌شود.</p>
+
+                <div class="endpoint">
+                    GET /birth-api/calculate_age?year={year}&month={month}&day={day}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">year</span></td>
+                            <td><span class="param-type">integer</span></td>
+                            <td>سال تولد</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">month</span></td>
+                            <td><span class="param-type">integer</span></td>
+                            <td>ماه تولد</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">day</span></td>
+                            <td><span class="param-type">integer</span></td>
+                            <td>روز تولد</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "age_years": 25,
+  "age_months": 3,
+  "age_days": 15,
+  "birth_date": "1379-02-03",
+  "next_birthday": "1405-02-03",
+  "days_until_next_birthday": 120
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="country-info" class="docs-section">
+                <h2>Country Info <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API اطلاعات مربوط به کشور مورد نظر را ارائه می‌دهد.</p>
+
+                <div class="endpoint">
+                    GET /country-info/get?country={country}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">country</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>نام کشور (مثلاً iran, usa, germany)</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "country": "Iran",
+  "capital": "Tehran",
+  "population": 85000000,
+  "area_km2": 1648195,
+  "currency": "IRR",
+  "languages": ["Persian"],
+  "timezone": "UTC+3:30",
+  "flag_url": "https://flagcdn.com/ir.svg"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gemini-ai" class="docs-section">
+                <h2>Gemini AI <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API امکان گفتگو با هوش مصنوعی Gemini را فراهم می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /Gemini/ai?text={text}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن سوال یا پیام برای هوش مصنوعی</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "response": "سلام! من Gemini هستم، چطور می‌توانم کمک کنم؟",
+  "model": "gemini-pro",
+  "tokens_used": 45
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="search-api" class="docs-section">
+                <h2>Search API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API امکان جستجو با استفاده از موتور جستجوی گوگل را فراهم می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /search-api/search?query={query}&token={token}&num={num}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">query</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>عبارت جستجو</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">num</span></td>
+                            <td><span class="param-type">integer</span></td>
+                            <td>تعداد نتایج مورد نظر (اختیاری)</td>
+                            <td>خیر</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "results": [
+    {
+      "title": "نمونه نتیجه جستجو",
+      "link": "https://example.com",
+      "snippet": "توضیح مختصر درباره نتیجه جستجو",
+      "display_link": "example.com"
+    }
+  ],
+  "total_results": 1000000
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="religious-ai" class="docs-section">
+                <h2>Religious AI <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API هوش مصنوعی مبتنی بر Gemini است که به سوالات مذهبی و فقهی پاسخ می‌دهد.</p>
+
+                <div class="endpoint">
+                    GET /Religious-AI/ai?text={text}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>سوال مذهبی یا فقهی</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "response": "بر اساس فقه اسلامی، این مسئله به شرح زیر است...",
+  "sources": ["قرآن", "احادیث"],
+  "model": "religious-gemini"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="synapse-ai" class="docs-section">
+                <h2>Synapse AI <span class="method-badge method-get">GET</span></h2>
+                <p class="description">هوش مصنوعی با شخصیت‌های مختلف. پارامتر personality برای انتخاب شخصیت مورد نظر
+                    استفاده می‌شود.</p>
+
+                <div class="endpoint">
+                    GET /Synapse/ai?text={text}&personality={personality}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن ورودی</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">personality</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>شخصیت مورد نظر (مثلاً formal, friendly, funny)</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "response": "سلام! من در حالت دوستانه هستم. چطور می‌تونم کمکتون کنم؟",
+  "personality": "friendly",
+  "model": "synapse-ai"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ping-api" class="docs-section">
+                <h2>Ping API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API یک URL و توکن دریافت می‌کند و وضعیت وب‌سایت هدف را بررسی می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /ping-api/ping?url={url}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">url</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>آدرس وب‌سایت برای پینگ</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "url": "https://api.DigiX-Helper.ir",
+  "response_time_ms": 150,
+  "status_code": 200,
+  "is_up": true,
+  "message": "وب‌سایت فعال است"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="convert-num-to-text" class="docs-section">
+                <h2>Convert Num to Text <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API اعداد را به کلمات تبدیل می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /convert-num-to-text/convert?number={number}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">number</span></td>
+                            <td><span class="param-type">integer/string</span></td>
+                            <td>عدد برای تبدیل به متن</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "number": 2865225,
+  "text_fa": "دو میلیون و هشتصد و شصت و پنج هزار و دویست و بیست و پنج",
+  "text_en": "two million eight hundred sixty-five thousand two hundred twenty-five"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="estekhare" class="docs-section">
+                <h2>Estekhare <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API یک لینک به تصویر استخاره ارائه می‌دهد.</p>
+
+                <div class="endpoint">
+                    GET /estekhare-api/estekhare?token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "image_url": "https://api.DigiX-Helper.ir/estekhare/random-image.jpg",
+  "interpretation": "توضیح استخاره",
+  "page_number": 42,
+  "verse": "آیه مرتبط"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="translate-api" class="docs-section">
+                <h2>Translate API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API برای ترجمه متن از یک زبان به زبان دیگر استفاده می‌شود.</p>
+
+                <div class="endpoint">
+                    GET /Translator-api/translate?text={text}&dest_lang={dest_lang}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن برای ترجمه</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">dest_lang</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>زبان مقصد (پیش‌فرض: en)</td>
+                            <td>خیر</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "original_text": "سلام خسته نباشید",
+  "translated_text": "Hello, welcome",
+  "source_lang": "fa",
+  "target_lang": "en"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="time-api" class="docs-section">
+                <h2>Time API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API قابلیت دریافت اطلاعات مرتبط با زمان را دارد.</p>
+
+                <div class="endpoint">
+                    GET /date-time-api/time?token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "date": "1403-07-15",
+  "time": "14:30:45",
+  "timezone": "Asia/Tehran",
+  "timestamp": 1696851045,
+  "day_name": "چهارشنبه",
+  "month_name": "مهر"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="image-api" class="docs-section">
+                <h2>Image API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">یک تصویر بر اساس متن ورودی ایجاد می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /image-api/generate_image?message={message}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">message</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن مورد نظر برای تولید تصویر</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "image_url": "https://api.DigiX-Helper.ir/generated/image_12345.jpg",
+  "message": "hi",
+  "generated_at": "2023-10-05T14:30:00Z",
+  "size": "1024x1024"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="joke-api" class="docs-section">
+                <h2>Joke API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">جوک و محتوای طنز دریافت می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /Joke-dev-api/get_joke?type={type}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">type</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>نوع خروجی (text یا image)</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "joke": "چرا کامپیوتر نمی‌تونه قهوه درست کنه؟ چون رمز سیستم عاملشو فراموش کرده!",
+  "type": "text",
+  "category": "کامپیوتر"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="qr-code-api" class="docs-section">
+                <h2>QR Code API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">QR کد ایجاد می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /QR-api/generate_qr?text={text}&subject={subject}&link={link}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن QR کد</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">subject</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>موضوع</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">link</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>لینک</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "qr_url": "https://api.DigiX-Helper.ir/qr/generated_qr_12345.png",
+  "text": "سلام",
+  "link": "https://api.DigiX-Helper.ir",
+  "size": "300x300"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="fohsh-api" class="docs-section">
+                <h2>Fohsh API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">وجود کلمات نامناسب در متن را بررسی می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /fohsh-api/check_bad_words?text={text}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن ورودی برای بررسی</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "has_bad_words": false,
+  "clean_text": "متن اصلی",
+  "bad_words_found": [],
+  "total_words": 5,
+  "clean_words": 5
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dream-api" class="docs-section">
+                <h2>Dream API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">تعبیر خواب ارائه می‌دهد.</p>
+
+                <div class="endpoint">
+                    GET /dream-api/dream?query={query}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">query</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>موضوع خواب</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "dream": "مدرسه",
+  "interpretation": "دیدن مدرسه در خواب نشانه یادگیری و رشد شخصی است...",
+  "source": "تعبیر خواب اسلامی",
+  "meaning": "مثبت"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="my-ip-info" class="docs-section">
+                <h2>My IP Info <span class="method-badge method-get">GET</span></h2>
+                <p class="description">اطلاعات مربوط به آدرس IP شما را دریافت می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /ip-api/my-ip?token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "ip": "192.168.1.1",
+  "city": "Tehran",
+  "region": "Tehran Province",
+  "country": "Iran",
+  "org": "ISP Provider",
+  "timezone": "Asia/Tehran",
+  "location": {
+    "lat": 35.6892,
+    "lon": 51.3890
+  }
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai-audio-api" class="docs-section">
+                <h2>AI Audio API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">متن را به گفتار تبدیل می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /ai-audio-api/generate-audio?text={text}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن ورودی برای تبدیل به گفتار</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "audio_url": "https://api.DigiX-Helper.ir/audio/generated_audio_12345.mp3",
+  "text": "بگو api plus",
+  "duration_seconds": 2.5,
+  "format": "mp3"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="text-encryption" class="docs-section">
+                <h2>Text Encryption <span class="method-badge method-get">GET</span></h2>
+                <p class="description">یک متن را رمزگذاری می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /Text-encryption-api/encrypt?text={text}&key={key}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن برای رمزگذاری</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">key</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>کلید رمزگذاری</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "encrypted_text": "gAAAAABn4kbOtqkuCG-ZH9L6_NDfwdg28cJJURAWsndR8Tk4PJkbm5ve6Bie4lisg7qKJarmTy8nbCaK5j06uJq402QKxoOMEQ==",
+  "algorithm": "AES-256",
+  "key": "ode49KTuwe_yW5umBGe7NCDOX1D2gzhv4nrhPma35Tk="
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bmi-calculation" class="docs-section">
+                <h2>BMI Calculation <span class="method-badge method-get">GET</span></h2>
+                <p class="description">شاخص توده بدنی (BMI) را بر اساس وزن و قد محاسبه می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /BMI/bmi?weight={weight}&height={height}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">weight</span></td>
+                            <td><span class="param-type">number</span></td>
+                            <td>وزن به کیلوگرم</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">height</span></td>
+                            <td><span class="param-type">number</span></td>
+                            <td>قد به سانتی‌متر یا متر</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "bmi": 31.14,
+  "category": "چاق (درجه 1)",
+  "health_risk": "افزایش خطر بیماری‌های قلبی، دیابت نوع 2",
+  "ideal_weight_range": {
+    "min": 53.5,
+    "max": 72.3
+  }
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="text-decryption" class="docs-section">
+                <h2>Text Decryption <span class="method-badge method-get">GET</span></h2>
+                <p class="description">یک متن رمزگذاری شده را رمزگشایی می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /Text-encryption-api/decrypt?text={text}&key={key}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن رمزگذاری شده</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">key</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>کلید رمزگشایی</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "decrypted_text": "HelloWorld",
+  "algorithm": "AES-256"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="aparat-search" class="docs-section">
+                <h2>Aparat Search <span class="method-badge method-get">GET</span></h2>
+                <p class="description">در آپارات به دنبال ویدیو جستجو می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /aparat-search-api/get_videos?query={query}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">query</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>عبارت جستجو</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "videos": [
+    {
+      "title": "ویدیو نمونه",
+      "url": "https://www.aparat.com/v/12345",
+      "thumbnail": "https://thumb.aparat.com/thumbnail.jpg",
+      "duration": "5:30",
+      "views": 1000
+    }
+  ],
+  "total_results": 50
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tts-api" class="docs-section">
+                <h2>TTS API <span class="method-badge method-get">GET</span></h2>
+                <p class="description">این API متن را به گفتار تبدیل کرده و فایل صوتی MP3 برمی‌گرداند.</p>
+
+                <div class="endpoint">
+                    GET /tts/tts?text={text}&lang={lang}&gender={gender}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن ورودی برای تبدیل به گفتار</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">lang</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>زبان گفتار (fa, en, ar, fr, de)</td>
+                            <td>خیر</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">gender</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>جنسیت صدا (male, female)</td>
+                            <td>خیر</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "audio_url": "https://api.DigiX-Helper.ir/tts/generated_12345.mp3",
+  "text": "سلام",
+  "language": "fa",
+  "gender": "female",
+  "duration": 1.5
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="fa-to-fn" class="docs-section">
+                <h2>FA to FN <span class="method-badge method-get">GET</span></h2>
+                <p class="description">اعداد فارسی را در متن به انگلیسی تبدیل می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /FA-To-Fn-api/convert?text={text}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن ورودی شامل اعداد فارسی</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "original_text": "به این وبلاگ خوش آمدید",
+  "converted_text": "به این وبلاگ خوش آمدید",
+  "numbers_converted": 0
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai-master" class="docs-section">
+                <h2>AI Master <span class="method-badge method-get">GET</span></h2>
+                <p class="description">چت هوش مصنوعی با مدل‌های مختلف.</p>
+
+                <div class="endpoint">
+                    GET /AI-Master/chat?model={model}&message={message}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">model</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>مدل هوش مصنوعی (مثلاً google/gemini-2.0-flash-exp:free)</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">message</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>پیام برای هوش مصنوعی</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "response": "فارسی حرف بزن",
+  "model": "google/gemini-2.0-flash-exp:free",
+  "tokens_used": 15
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="shorten-url" class="docs-section">
+                <h2>Shorten URL <span class="method-badge method-get">GET</span></h2>
+                <p class="description">URL را کوتاه می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /shorten?url={url}&expire_after={expire_after}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">url</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>URL اصلی برای کوتاه کردن</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">expire_after</span></td>
+                            <td><span class="param-type">integer</span></td>
+                            <td>زمان انقضا به ثانیه (اختیاری)</td>
+                            <td>خیر</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "short_url": "https://api.DigiX-Helper.ir/s/abc123",
+  "original_url": "https://example.com/long/url/path",
+  "expires_at": "2024-10-05T14:30:00Z"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hafez-fortune" class="docs-section">
+                <h2>Hafez Fortune <span class="method-badge method-get">GET</span></h2>
+                <p class="description">یک شعر تصادفی از حافظ و معنای آن را برمی‌گرداند.</p>
+
+                <div class="endpoint">
+                    GET /fal-hafez/fal?token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "id": 123,
+  "poem": "الا یا ایها الساقی ادر کأسا و ناولها...",
+  "meaning": "ای ساقی، پیاله‌ای پر کن و به من بده...",
+  "poet": "حافظ"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="national-id" class="docs-section">
+                <h2>National ID <span class="method-badge method-get">GET</span></h2>
+                <p class="description">کد ملی ایرانی را اعتبارسنجی می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /National-ID/validate_code_meli?code_meli={code_meli}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">code_meli</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>کد ملی برای اعتبارسنجی</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "valid": true,
+  "message": "کد ملی معتبر است",
+  "code_meli": "3245950231"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="text-to-morse" class="docs-section">
+                <h2>Text to Morse <span class="method-badge method-get">GET</span></h2>
+                <p class="description">متن ساده را به کد مورس تبدیل می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /Morse-Converter/to_morse?text={text}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">text</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>متن برای تبدیل به مورس</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "text": "api.DigiX-Helper.ir",
+  "morse_code": ".- .--. .. / .--. .-.. ..- ... .-.-.- .. .-.",
+  "with_spaces": true
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="morse-to-text" class="docs-section">
+                <h2>Morse to Text <span class="method-badge method-get">GET</span></h2>
+                <p class="description">کد مورس را به متن ساده تبدیل می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /Morse-Converter/from_morse?morse={morse}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">morse</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>کد مورس برای تبدیل به متن</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "morse_code": ".... . .-.. .-.. --- / .- .-.. ..",
+  "text": "hello ali",
+  "language": "en"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="coin-rates" class="docs-section">
+                <h2>Coin Rates <span class="method-badge method-get">GET</span></h2>
+                <p class="description">قیمت 550 ارز دیجیتال از اکسانو را دریافت می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /CoinRates/Get-Price?token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "coins": [
+    {
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "price_usd": 45000,
+      "price_irt": 4500000000,
+      "change_24h": 2.5,
+      "volume_24h": 25000000000
+    }
+  ],
+  "total_coins": 550,
+  "updated_at": "2023-10-05T14:30:00Z"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="domain-scope" class="docs-section">
+                <h2>Domain Scope <span class="method-badge method-get">GET</span></h2>
+                <p class="description">اطلاعات IP برای یک دامنه دریافت می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /domain-info/domain-info?domain={domain}&token={token}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">domain</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>نام دامنه (مثلاً api.DigiX-Helper.ir)</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "domain": "api.DigiX-Helper.ir",
+  "ip_address": "192.168.1.100",
+  "country": "Iran",
+  "city": "Tehran",
+  "isp": "ISP Provider",
+  "organization": "API Plus",
+  "location": {
+    "latitude": 35.6892,
+    "longitude": 51.3890
+  }
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="currency-price" class="docs-section">
+                <h2>Currency Price <span class="method-badge method-get">GET</span></h2>
+                <p class="description">قیمت ارزها را دریافت می‌کند.</p>
+
+                <div class="endpoint">
+                    GET /Currency-price/prices?token={token}&in={base}&to={quote}&search={search}
+                </div>
+
+                <h3>پارامترها</h3>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>پارامتر</th>
+                            <th>نوع</th>
+                            <th>توضیح</th>
+                            <th>الزامی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">token</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>توکن احراز هویت</td>
+                            <td>بله</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">in</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>ارز پایه (اختیاری)</td>
+                            <td>خیر</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">to</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>ارز مقصد (اختیاری)</td>
+                            <td>خیر</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">search</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>جستجو (اختیاری)</td>
+                            <td>خیر</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>نمونه پاسخ</h3>
+                <div class="response-example">
+                    <h4>موفقیت‌آمیز (200)</h4>
+                    <div class="code-block">
+                        <pre>{
+  "status": "success",
+  "pairs": [
+    {
+      "base": "BTC",
+      "quote": "USDT",
+      "price": 45000.50,
+      "volume": 25000000,
+      "change_24h": 2.5,
+      "updated_at": "2023-10-05T14:30:00Z"
+    }
+  ],
+  "total_pairs": 100
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <button class="sidebar-toggle" id="sidebarToggle">
+        ☰
+    </button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <footer class="liquid">
+        © DigiX — All Rights Reserved
+    </footer>
+
+    <script src="./js/api.js"></script>
+</body>
+
+</html>
