@@ -1,6 +1,6 @@
 # DigiX — Official Website
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+![License](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)
 
 This repository contains the source code of the official DigiX website.  
 It represents the public-facing platform of the DigiX organization and is intended to provide general information about the DigiX services and ecosystem.
